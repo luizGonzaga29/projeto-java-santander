@@ -2,6 +2,7 @@ package banco;
 
 
 
+import entidades.Banco;
 import entidades.Cliente;
 
 public class Conta implements Ibanco {
@@ -83,7 +84,7 @@ public class Conta implements Ibanco {
 
 	@Override
 	public void imprimirTotal() {
-		double total = cliente.getConta().stream()
+		double total = Banco.exibirContasCliente(cliente).stream()
 				.map(valor -> valor.getSaldo())
 				.reduce((acc, valor) -> acc + valor).get();
 		System.out.println( cliente.getNome() + " :\n"

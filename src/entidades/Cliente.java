@@ -1,18 +1,12 @@
 package entidades;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import banco.Conta;
-
 public class Cliente {
 
 	private String nome;
 	private String cpf;
 	private String telefone;
 	private String email;
-	private List<Conta> contas;
-	
+		
 	public Cliente() {}
 
 	
@@ -21,17 +15,8 @@ public class Cliente {
 		this.cpf = cpf;
 		this.telefone = telefone;
 		this.email = email;
-		this.contas = new ArrayList<Conta>();
 	}
 
-	public void addConta(Conta conta) {
-		this.contas.add(conta);
-	}
-	
-	public List<Conta> getConta() {
-		return this.contas;
-	}
-	
 	
 	public String getNome() {
 		return nome;
@@ -68,7 +53,7 @@ public class Cliente {
 	@Override
 	public String toString() {
 		return "Cliente [nome = " + nome + ", cpf = " + cpf +
-				", telefone = " + telefone + ", email = " + email + " contas = " + contas + "]";
+				", telefone = " + telefone + ", email = " + email;
 	}
 	
 	
