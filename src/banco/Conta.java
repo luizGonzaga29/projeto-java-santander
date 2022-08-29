@@ -2,7 +2,6 @@ package banco;
 
 
 
-import entidades.Banco;
 import entidades.Cliente;
 
 public class Conta implements Ibanco {
@@ -82,16 +81,7 @@ public class Conta implements Ibanco {
 				+"]";
 	}
 
-	@Override
-	public void imprimirTotal() {
-		double total = Banco.exibirContasCliente(cliente).stream()
-				.map(valor -> valor.getSaldo())
-				.reduce((acc, valor) -> acc + valor).get();
-		System.out.println( cliente.getNome() + " :\n"
-				+ "Agência : " + numeroAgencia 
-				+ "\nSaldo total : R$" + total);
-	}
-
+	
 	@Override
 	public void transferir(double valor, Conta conta) {
 		this.sacar(valor);
