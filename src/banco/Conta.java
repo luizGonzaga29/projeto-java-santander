@@ -3,6 +3,7 @@ package banco;
 
 
 import entidades.Cliente;
+import excecoes.InvalidValorException;
 
 public class Conta implements Ibanco {
 
@@ -47,8 +48,6 @@ public class Conta implements Ibanco {
 		this.saldo = saldo;
 	}
 	
-	
-
 	public Cliente getCliente() {
 		return cliente;
 	}
@@ -59,13 +58,13 @@ public class Conta implements Ibanco {
 
 	@Override
 	public void sacar(double valor) {
-		if(valor > this.saldo) System.out.println("Saldo insuficiente");
+		if(valor > this.saldo) throw new InvalidValorException("Saldo insuficiente");
 		else this.saldo -= valor;
 	}
 
 	@Override
 	public void depositar(double valor) {
-		if(valor < 1) System.out.println("Valor inválido para depósito");
+		if(valor < 1) throw new InvalidValorException("Valor inválido para depósito");
 		else this.saldo += valor;
 	}
 

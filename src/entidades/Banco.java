@@ -5,15 +5,14 @@ import java.util.List;
 
 import banco.Conta;
 import constBanco.TipoConta;
+import excecoes.ClientNotFoundException;
 
 public class Banco {
 
 	private static List<Conta> conta = new ArrayList<>();
 	
-	public Banco() {}
-	
 	public static void addConta(List<Conta> contas) {
-		Banco.conta.addAll(contas);
+		conta.addAll(contas);
 	}
 	
 	public static void exibirContas(){
@@ -22,11 +21,13 @@ public class Banco {
 					 "Nome: " + cont.getCliente().getNome()
 					 + "\nAgência: " + cont.getNumeroAgencia()
 					 + "\nConta: " + cont.getNumeroConta()
-					 + "\nSaldo: " + cont.getSaldo()
+					 + "\nSaldo: R$" + cont.getSaldo()
 					 + "\nTipo da conta : " + tipoConta(cont)
+					 + "\n"
 					 );
 		 }
 	}
+	
 	
 	private static List<Conta> filtrarContasCliente(Cliente cli){
 		
@@ -35,7 +36,11 @@ public class Banco {
 			if(cont.getCliente().getCpf().equalsIgnoreCase(cli.getCpf()))
 				contasCli.add(cont);
 		}
+		if(contasCli.size() == 0) {
+			throw new ClientNotFoundException("Não existe conta para esse cliente!");
+		}
 		return contasCli;
+		
 	}
 	
 	
@@ -53,7 +58,8 @@ public class Banco {
 			System.out.println(
 					"Nome: " + cli.getNome()
 					+"\nAgência: " + agencia
-					+"\nTotal: " + soma
+					+"\nTotal: R$" + soma
+					+"\n"
 					);
 		}
 	}
@@ -64,7 +70,7 @@ public class Banco {
 				.reduce((acc, valor) -> acc + valor).get();
 				
 		System.out.println( cliente.getNome() + " :"
-				+ "\nSaldo total : R$" + total);
+				+ "\nSaldo total : R$" + total + "\n");
 	}
 	
 	private static String tipoConta(Conta conta) {

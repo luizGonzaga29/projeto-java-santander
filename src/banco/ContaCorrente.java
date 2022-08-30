@@ -2,6 +2,7 @@ package banco;
 
 import constBanco.TipoConta;
 import entidades.Cliente;
+import excecoes.InvalidValorException;
 
 public class ContaCorrente extends Conta {
 
@@ -14,7 +15,7 @@ public class ContaCorrente extends Conta {
 
 	@Override
 	public void sacar(double valor) {
-		if(valor > 100.00) System.out.println("Não é possível sacar valores acima de 100 na conta corrente");
+		if(valor > 500.00) throw new InvalidValorException("Não é possível sacar valores acima de 500 na conta corrente");
 		else super.sacar(valor);
 	}
 
